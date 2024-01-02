@@ -7,7 +7,7 @@ public class Stockage {
     private int quantite;
 
     public Stockage(String produit, int reference, int quantite) {
-        this.produit = produit;
+        this.produit = produit; //Sert a différencier la variable de l'argument
         this.reference = reference;
         this.quantite = quantite;
     }
@@ -22,5 +22,9 @@ public class Stockage {
 
     public int getQuantite() {
         return quantite;
+    }
+
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
     }
 }

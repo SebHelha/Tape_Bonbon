@@ -7,17 +7,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.FileChooser;
-
-import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 
 public class GestionController implements Initializable {
 
     @FXML
-    private TableView<Stockage> conteneur;//https://www.youtube.com/watch?v=fnU1AlyuguE&list=PLrzWQu7Ajpi26jZvP8JhEJgFPFEj_fojO&index=34&t=1s
+    private TableView<Stockage> conteneur; //https://www.youtube.com/watch?v=fnU1AlyuguE&list=PLrzWQu7Ajpi26jZvP8JhEJgFPFEj_fojO&index=34&t=1s
 
     @FXML
     private TableColumn<Stockage, String> prdt;
@@ -39,19 +35,24 @@ public class GestionController implements Initializable {
 
     @FXML
     void okPressed(MouseEvent event) {
+        String selectedProduit = selecteur.getValue();
+        String qttEntranteText = qttin.getText().trim();
+        String qttSortanteText = qttout.getText().trim();
 
+        GestionModel.updateQuantities(list, selectedProduit, qttEntranteText, qttSortanteText);
+
+        GestionModel.saveDataToFile(list, "C:\\Users\\sebas\\OneDrive\\Documents\\HELHa\\MA0\\UE SI339 Technique Informatique\\Project\\Tape_Bonbon\\src\\main\\java\\projet\\tape_bonbon/Sauvegarde.txt");
+
+        qttin.clear();
+        qttout.clear();
     }
-    ObservableList<Stockage> list = FXCollections.observableArrayList(
-            new Stockage("Gauffre au Chocolat", 66529, 10),
-            new Stockage("Gauffre au Sucre", 66534, 10),
-            new Stockage("Cookie", 24698, 10),
-            new Stockage("Oreo", 78126, 10)
-    );
 
-    FileChooser fileChooser = new FileChooser();
+    private ObservableList<Stockage> list;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        list = FXCollections.observableArrayList(GestionModel.loadDataFromFile("C:\\Users\\sebas\\OneDrive\\Documents\\HELHa\\MA0\\UE SI339 Technique Informatique\\Project\\Tape_Bonbon\\src\\main\\java\\projet\\tape_bonbon/Sauvegarde.txt"));
+
         prdt.setCellValueFactory(new PropertyValueFactory<>("produit"));
         qtt.setCellValueFactory(new PropertyValueFactory<>("quantite"));
         ref.setCellValueFactory(new PropertyValueFactory<>("reference"));
@@ -61,5 +62,8 @@ public class GestionController implements Initializable {
         for (Stockage stockage : list){
             selecteur.getItems().add(stockage.getProduit());
         }
+
+        qttin.setTextFormatter(GestionModel.createNumericTextFormatter());
+        qttout.setTextFormatter(GestionModel.createNumericTextFormatter());
     }
 }
