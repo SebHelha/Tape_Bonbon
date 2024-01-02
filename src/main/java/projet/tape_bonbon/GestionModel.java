@@ -45,7 +45,7 @@ public class GestionModel {
         int newQuantite = selectedStockage.getQuantite() + qttEntrante - qttSortante;
 
         if (newQuantite < 0) {
-            Alert alert = new Alert(Alert.AlertType.WARNING,"La quantité ne peut pas devenir négative. Veuillez vérifier les entrées.", ButtonType.OK);
+            Alert alert = new Alert(Alert.AlertType.WARNING,"La quantitée ne peut pas être négative. Veuillez vérifier les entrées et sorties", ButtonType.OK);
             alert.showAndWait();
         } else {
             selectedStockage.setQuantite(newQuantite);
