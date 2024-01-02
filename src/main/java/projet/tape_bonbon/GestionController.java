@@ -41,7 +41,7 @@ public class GestionController implements Initializable {
 
         GestionModel.updateQuantities(list, selectedProduit, qttEntranteText, qttSortanteText);
 
-        GestionModel.saveDataToFile(list, "C:\\Users\\sebas\\OneDrive\\Documents\\HELHa\\MA0\\UE SI339 Technique Informatique\\Project\\Tape_Bonbon\\src\\main\\java\\projet\\tape_bonbon/Sauvegarde.txt");
+        GestionModel.saveDataToFile(list, "src/main/java/projet/tape_bonbon/Sauvegarde.txt");
 
         qttin.clear();
         qttout.clear();
@@ -51,7 +51,7 @@ public class GestionController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        list = FXCollections.observableArrayList(GestionModel.loadDataFromFile("C:\\Users\\sebas\\OneDrive\\Documents\\HELHa\\MA0\\UE SI339 Technique Informatique\\Project\\Tape_Bonbon\\src\\main\\java\\projet\\tape_bonbon/Sauvegarde.txt"));
+        list = FXCollections.observableArrayList(GestionModel.loadDataFromFile("src/main/java/projet/tape_bonbon/Sauvegarde.txt"));
 
         prdt.setCellValueFactory(new PropertyValueFactory<>("produit"));
         qtt.setCellValueFactory(new PropertyValueFactory<>("quantite"));

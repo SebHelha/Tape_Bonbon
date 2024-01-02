@@ -69,7 +69,7 @@ public class GestionModel {
 
         return new TextFormatter<>(filter);
     }
-    private static final String filePath = "C:\\Users\\sebas\\OneDrive\\Documents\\HELHa\\MA0\\UE SI339 Technique Informatique\\Project\\Tape_Bonbon\\src\\main\\java\\projet\\tape_bonbon/Sauvegarde.txt";
+    private static final String filePath = "src/main/java/projet/tape_bonbon/Sauvegarde.txt";
 
     // Charger la liste depuis le fichier texte
     public static List<Stockage> loadDataFromFile(String s) {
@@ -86,7 +86,6 @@ public class GestionModel {
             }
         } catch (IOException | NumberFormatException e) {
             e.printStackTrace();
-            // Gérer les exceptions selon les besoins
         }
 
         return loadedList;

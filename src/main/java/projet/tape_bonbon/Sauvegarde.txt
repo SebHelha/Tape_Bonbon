@@ -1,6 +1,6 @@
 Gauffre au chocolat
 66589
-30
+50
 Gauffre au sucre
 66547
 30
@@ -10,3 +10,24 @@ Cookie
 Oreo
 36947
 70
+Bonbon
+48769
+120
+Kinder Bueno
+41256
+40
+Kinder Délice
+41231
+28
+Compote
+25789
+30
+Bar céréale
+11245
+80
+Tasse HELHa
+97412
+9
+Chips sel
+45781
+40
