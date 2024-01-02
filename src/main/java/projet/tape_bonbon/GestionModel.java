@@ -69,13 +69,13 @@ public class GestionModel {
 
         return new TextFormatter<>(filter);
     }
-    private static final String filePath = "src/main/java/projet/tape_bonbon/Sauvegarde.txt";
+    private static final String routeFichier = "src/main/java/projet/tape_bonbon/Sauvegarde.txt";
 
     // Charger la liste depuis le fichier texte
     public static List<Stockage> loadDataFromFile(String s) {
         List<Stockage> loadedList = new ArrayList<>();
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(routeFichier))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String produit = line.trim();
@@ -93,7 +93,7 @@ public class GestionModel {
 
     // Sauvegarder la liste dans le fichier texte
     public static void saveDataToFile(List<Stockage> list, String s) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(routeFichier))) {
             for (Stockage stockage : list) {
                 writer.write(stockage.getProduit());
                 writer.newLine();
@@ -104,7 +104,6 @@ public class GestionModel {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            // Gérer les exceptions selon les besoins
         }
     }
 }
