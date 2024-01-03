@@ -1,33 +1,33 @@
 Gauffre au chocolat
-66589
+1€
 50
 Gauffre au sucre
-66547
+1€
 30
 Cookie
-12548
+1,80€
 45
 Oreo
-36947
+1,50€
 70
 Bonbon
-48769
+0,80€
 120
 Kinder Bueno
-41256
+1,20€
 40
 Kinder Délice
-41231
+1,20€
 28
 Compote
-25789
+0,90€
 30
 Bar céréale
-11245
+1€
 80
 Tasse HELHa
-97412
+4€
 9
 Chips sel
-45781
+1,20€
 40

@@ -22,7 +22,7 @@ public class GestionController implements Initializable {
     private TableColumn<Stockage, Integer> qtt;//Le tableau ne peut pas recevoir de "int", il faut donc ajouter un objet "Integer"
 
     @FXML
-    private TableColumn<Stockage, Integer> ref;
+    private TableColumn<Stockage, String> prx;
 
     @FXML
     private TextField qttin;
@@ -55,7 +55,7 @@ public class GestionController implements Initializable {
 
         prdt.setCellValueFactory(new PropertyValueFactory<>("produit"));
         qtt.setCellValueFactory(new PropertyValueFactory<>("quantite"));
-        ref.setCellValueFactory(new PropertyValueFactory<>("reference"));
+        prx.setCellValueFactory(new PropertyValueFactory<>("prix"));
 
         conteneur.setItems(list);
 

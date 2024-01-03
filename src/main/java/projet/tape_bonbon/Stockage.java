@@ -3,12 +3,12 @@ package projet.tape_bonbon;
 public class Stockage {
 
     private String produit;
-    private int reference;
+    private String prix;
     private int quantite;
 
-    public Stockage(String produit, int reference, int quantite) {
+    public Stockage(String produit, String prix, int quantite) {
         this.produit = produit; //Sert a différencier la variable de l'argument
-        this.reference = reference;
+        this.prix = prix;
         this.quantite = quantite;
     }
 
@@ -16,8 +16,8 @@ public class Stockage {
         return produit;
     }
 
-    public int getReference() {
-        return reference;
+    public String getPrix() {
+        return prix;
     }
 
     public int getQuantite() {

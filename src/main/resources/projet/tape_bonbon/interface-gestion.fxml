@@ -24,7 +24,7 @@
       <TableView fx:id="conteneur" prefHeight="200.0" prefWidth="200.0">
         <columns>
           <TableColumn fx:id="prdt" prefWidth="75.0" text="Produit" />
-          <TableColumn fx:id="ref" prefWidth="75.0" text="Référence" />
+          <TableColumn fx:id="prx" prefWidth="75.0" text="Prix" />
             <TableColumn fx:id="qtt" prefWidth="75.0" text="Quantité" />
         </columns>
          <columnResizePolicy>

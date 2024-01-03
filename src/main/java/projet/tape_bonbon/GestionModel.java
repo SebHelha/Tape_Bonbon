@@ -79,10 +79,10 @@ public class GestionModel {
             String line;
             while ((line = reader.readLine()) != null) {
                 String produit = line.trim();
-                int reference = Integer.parseInt(reader.readLine().trim());
+                String prix = reader.readLine().trim();
                 int quantite = Integer.parseInt(reader.readLine().trim());
 
-                loadedList.add(new Stockage(produit, reference, quantite));
+                loadedList.add(new Stockage(produit, prix, quantite));
             }
         } catch (IOException | NumberFormatException e) {
             e.printStackTrace();
@@ -97,7 +97,7 @@ public class GestionModel {
             for (Stockage stockage : list) {
                 writer.write(stockage.getProduit());
                 writer.newLine();
-                writer.write(String.valueOf(stockage.getReference()));
+                writer.write(stockage.getPrix());
                 writer.newLine();
                 writer.write(String.valueOf(stockage.getQuantite()));
                 writer.newLine();
