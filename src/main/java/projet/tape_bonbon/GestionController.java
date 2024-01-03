@@ -39,9 +39,9 @@ public class GestionController implements Initializable {
         String qttEntranteText = qttin.getText().trim();
         String qttSortanteText = qttout.getText().trim();
 
-        GestionModel.updateQuantities(list, selectedProduit, qttEntranteText, qttSortanteText);
+        Inventaire.updateQuantities(list, selectedProduit, qttEntranteText, qttSortanteText);
 
-        GestionModel.saveDataToFile(list, "src/main/java/projet/tape_bonbon/Sauvegarde.txt");
+        Inventaire.saveDataToFile(list, "src/main/java/projet/tape_bonbon/Sauvegarde.txt");
 
         qttin.clear();
         qttout.clear();
@@ -51,7 +51,7 @@ public class GestionController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        list = FXCollections.observableArrayList(GestionModel.loadDataFromFile("src/main/java/projet/tape_bonbon/Sauvegarde.txt"));
+        list = FXCollections.observableArrayList(Inventaire.loadDataFromFile("src/main/java/projet/tape_bonbon/Sauvegarde.txt"));
 
         prdt.setCellValueFactory(new PropertyValueFactory<>("produit"));
         qtt.setCellValueFactory(new PropertyValueFactory<>("quantite"));
@@ -63,7 +63,7 @@ public class GestionController implements Initializable {
             selecteur.getItems().add(stockage.getProduit());
         }
 
-        qttin.setTextFormatter(GestionModel.createNumericTextFormatter());
-        qttout.setTextFormatter(GestionModel.createNumericTextFormatter());
+        qttin.setTextFormatter(Inventaire.createNumericTextFormatter());
+        qttout.setTextFormatter(Inventaire.createNumericTextFormatter());
     }
 }
