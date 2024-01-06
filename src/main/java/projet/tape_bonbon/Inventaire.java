@@ -1,33 +1,35 @@
+// Classe gérant les opérations d'inventaire.
 package projet.tape_bonbon;
 
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextFormatter;
-
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.UnaryOperator;
 
 public class Inventaire {
 
-    //Méthode pour la mise à jours des quantités de produits dans le tableau:
+    // Méthode pour la mise à jour des quantités de produits dans le tableau.
     public static void updateQuantities(ObservableList<Stockage> list, String selectedProduit, String qttEntranteText, String qttSortanteText) {
 
+        // Vérification de la validité du produit sélectionné.
         if (selectedProduit == null || selectedProduit.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Veuillez sélectionner un produit.", ButtonType.OK);
             alert.showAndWait();
             return;
         }
 
+        // Vérification des champs de quantité entrante et sortante.
         if (qttEntranteText.isEmpty() && qttSortanteText.isEmpty()) {
             return;
         }
 
+        // Conversion des chaînes de texte en entiers.
         int qttEntrante = (qttEntranteText.isEmpty()) ? 0 : Integer.parseInt(qttEntranteText);
         int qttSortante = (qttSortanteText.isEmpty()) ? 0 : Integer.parseInt(qttSortanteText);
 
+        // Recherche de l'objet Stockage correspondant au produit sélectionné.
         Stockage selectedStockage = null;
         for (Stockage stockage : list) {
             if (stockage.getProduit().equals(selectedProduit)) {
@@ -36,14 +38,18 @@ public class Inventaire {
             }
         }
 
+        // Calcul de la nouvelle quantité.
         int newQuantite = selectedStockage.getQuantite() + qttEntrante - qttSortante;
 
+        // Vérification de la validité de la nouvelle quantité.
         if (newQuantite < 0) {
-            Alert alert = new Alert(Alert.AlertType.WARNING,"La quantitée ne peut pas être négative. Veuillez vérifier les entrées et sorties", ButtonType.OK);
+            Alert alert = new Alert(Alert.AlertType.WARNING, "La quantité ne peut pas être négative. Veuillez vérifier les entrées et sorties.", ButtonType.OK);
             alert.showAndWait();
         } else {
+            // Mise à jour de la quantité dans l'objet Stockage.
             selectedStockage.setQuantite(newQuantite);
 
+            // Mise à jour de la liste observable.
             for (Stockage stockage : list) {
                 if (stockage.getProduit().equals(selectedStockage.getProduit())) {
                     list.set(list.indexOf(stockage), selectedStockage);
@@ -53,8 +59,7 @@ public class Inventaire {
         }
     }
 
-
-    //Méthode pour la protection contre les l'écriture de caractères:
+    // Méthode pour la protection contre l'écriture de caractères non numériques.
     public static TextFormatter<String> createNumericTextFormatter() {
         UnaryOperator<TextFormatter.Change> filtre = change -> {
             String newText = change.getControlNewText();

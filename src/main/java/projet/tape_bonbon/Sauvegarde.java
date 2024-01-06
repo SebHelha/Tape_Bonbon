@@ -1,3 +1,4 @@
+// Classe pour la sauvegarde et le chargement des données depuis un fichier texte.
 package projet.tape_bonbon;
 
 import java.io.*;
@@ -5,14 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Sauvegarde {
+    // Chemin du fichier de sauvegarde.
     public static final String routeFichier = "src/main/java/projet/tape_bonbon/Sauvegarde.txt";
 
-    //Méthode de chargement des données depuis le fichier txt
+    // Méthode de chargement des données depuis le fichier txt.
     public static List<Stockage> loadDataFromFile(String s) {
         List<Stockage> loadedList = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(routeFichier))) {
             String line;
+            // Lecture des lignes du fichier et création d'objets Stockage.
             while ((line = reader.readLine()) != null) {
                 String produit = line.trim();
                 String prix = reader.readLine().trim();
@@ -27,9 +30,10 @@ public class Sauvegarde {
         return loadedList;
     }
 
-    //Méthode de sauvegarde des éléments dans le fichier txt
+    // Méthode de sauvegarde des éléments dans le fichier txt.
     public static void saveDataToFile(List<Stockage> list, String s) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(routeFichier))) {
+            // Écriture des données dans le fichier.
             for (Stockage stockage : list) {
                 writer.write(stockage.getProduit());
                 writer.newLine();
