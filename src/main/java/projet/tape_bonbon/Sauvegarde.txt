@@ -1,6 +1,6 @@
 Gauffre au chocolat
 1€
-50
+55
 Gauffre au sucre
 1€
 30
@@ -21,7 +21,7 @@ Kinder Délice
 28
 Compote
 0,90€
-30
+40
 Bar céréale
 1€
 80

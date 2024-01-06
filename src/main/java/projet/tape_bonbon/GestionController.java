@@ -13,45 +13,30 @@ import java.util.ResourceBundle;
 public class GestionController implements Initializable {
 
     @FXML
-    private TableView<Stockage> conteneur; //https://www.youtube.com/watch?v=fnU1AlyuguE&list=PLrzWQu7Ajpi26jZvP8JhEJgFPFEj_fojO&index=34&t=1s
+    protected TableView<Stockage> conteneur; //https://www.youtube.com/watch?v=fnU1AlyuguE&list=PLrzWQu7Ajpi26jZvP8JhEJgFPFEj_fojO&index=34&t=1s
 
     @FXML
-    private TableColumn<Stockage, String> prdt;
+    protected TableColumn<Stockage, String> prdt;
 
     @FXML
-    private TableColumn<Stockage, Integer> qtt;//Le tableau ne peut pas recevoir de "int", il faut donc ajouter un objet "Integer"
+    protected TableColumn<Stockage, Integer> qtt;//Le tableau ne peut pas recevoir de "int", il faut donc ajouter un objet "Integer"
 
     @FXML
-    private TableColumn<Stockage, String> prx;
+    protected TableColumn<Stockage, String> prx;
 
     @FXML
-    private TextField qttin;
+    protected TextField qttin;
 
     @FXML
-    private TextField qttout;
+    protected TextField qttout;
 
     @FXML
-    private ChoiceBox<String> selecteur;
+    protected ChoiceBox<String> selecteur;
 
-    @FXML
-    void okPressed(MouseEvent event) {
-        String selectedProduit = selecteur.getValue();
-        String qttEntranteText = qttin.getText().trim();
-        String qttSortanteText = qttout.getText().trim();
-
-        Inventaire.updateQuantities(list, selectedProduit, qttEntranteText, qttSortanteText);
-
-        Inventaire.saveDataToFile(list, "src/main/java/projet/tape_bonbon/Sauvegarde.txt");
-
-        qttin.clear();
-        qttout.clear();
-    }
-
-    private ObservableList<Stockage> list;
-
+    protected ObservableList<Stockage> list;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        list = FXCollections.observableArrayList(Inventaire.loadDataFromFile("src/main/java/projet/tape_bonbon/Sauvegarde.txt"));
+        list = FXCollections.observableArrayList(Sauvegarde.loadDataFromFile(Sauvegarde.routeFichier));
 
         prdt.setCellValueFactory(new PropertyValueFactory<>("produit"));
         qtt.setCellValueFactory(new PropertyValueFactory<>("quantite"));
@@ -66,4 +51,20 @@ public class GestionController implements Initializable {
         qttin.setTextFormatter(Inventaire.createNumericTextFormatter());
         qttout.setTextFormatter(Inventaire.createNumericTextFormatter());
     }
+    @FXML
+    void okPressed(MouseEvent event) {
+        String selectedProduit = selecteur.getValue();
+        String qttEntranteText = qttin.getText().trim();
+        String qttSortanteText = qttout.getText().trim();
+
+        Inventaire.updateQuantities(list, selectedProduit, qttEntranteText, qttSortanteText);
+
+        Sauvegarde.saveDataToFile(list, Sauvegarde.routeFichier);
+
+        qttin.clear();
+        qttout.clear();
+
+    }
+
+
 }
