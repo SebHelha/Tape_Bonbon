@@ -20,6 +20,13 @@ public class Inventaire {
             return;
         }
 
+        // Vérification qu'au moins un champ de texte est rempli.
+        if (qttEntranteText.isEmpty() && qttSortanteText.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Veuillez saisir une quantité entrante ou sortante.", ButtonType.OK);
+            alert.showAndWait();
+            return;
+        }
+
         // Vérification des champs de quantité entrante et sortante.
         if (qttEntranteText.isEmpty() && qttSortanteText.isEmpty()) {
             return;
